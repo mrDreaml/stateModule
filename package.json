@@ -1,13 +1,21 @@
 {
   "name": "state-module",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "manage your state",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./src/**.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrDreaml/stateModule.git"
   },
   "author": "Andreev Dmitry",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrDreaml/stateModule/issues"
+  },
+  "homepage": "https://github.com/mrDreaml/stateModule/blob/master/README.md",
   "dependencies": {
     "mocha": "^10.0.0"
   }
