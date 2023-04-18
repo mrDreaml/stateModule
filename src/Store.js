@@ -5,13 +5,13 @@ const debounce = require('./debounce')
 class Store {
     state
     initialState
-    #triggerUpdate
+    triggerUpdate
 
     #getState (initialState) {
         return new Proxy({ ...initialState }, {
             set: (obj, prop, value) => {
                 obj[prop] = value
-                this.#triggerUpdate()
+                this.triggerUpdate()
                 return true
             },
         })
@@ -19,7 +19,7 @@ class Store {
 
     constructor(initialState = {}, delay = 100, onUpdate = () => {}) {
         this.initialState = initialState
-        this.#triggerUpdate = delay !== -1 ? debounce(onUpdate, delay) : onUpdate
+        this.triggerUpdate = delay !== -1 ? debounce(onUpdate, delay) : onUpdate
         this.state = this.#getState(initialState)
 
         Object.defineProperty(this, 'state', { writable: false })
@@ -29,7 +29,7 @@ class Store {
         Object.defineProperty(this, 'state', { writable: true })
         this.state = this.#getState(this.initialState)
         Object.defineProperty(this, 'state', { writable: false })
-        this.#triggerUpdate()
+        this.triggerUpdate()
     }
 }
 

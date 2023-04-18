@@ -104,4 +104,16 @@ describe('Store', function () {
             assert.throws(() => MyStore.state = { a: 1 }, Error)
         })
     })
+
+    describe('check forceUpdate value', function () {
+        it('check reset', function () {
+            let updateIndicator = 0
+
+            const myStore = new Store({}, -1, () => updateIndicator++)
+            myStore.state.a = [1, 2,3 ]
+            myStore.state.a.pop()
+            myStore.triggerUpdate()
+            assert.equal(updateIndicator, 2)
+        })
+    })
 })
